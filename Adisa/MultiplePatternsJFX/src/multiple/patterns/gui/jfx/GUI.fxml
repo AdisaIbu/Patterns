@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: silver;" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="multiple.patterns.gui.jfx.FXMLDocumentController">
+   <children>
+      <VBox fx:id="globalBox" maxHeight="720.0" maxWidth="800.0" minHeight="720.0" minWidth="800.0" prefHeight="720.0" prefWidth="800.0">
+         <children>
+            <HBox alignment="CENTER" maxHeight="60.0" maxWidth="800.0" minHeight="60.0" minWidth="800.0" prefHeight="60.0" prefWidth="800.0" VBox.vgrow="NEVER">
+               <children>
+                  <Button fx:id="addTriangleButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#initCreateShape" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="VECTOR_TRIANGLE" size="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="addDiamondButton" alignment="CENTER" contentDisplay="CENTER" layoutX="350.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#initCreateShape" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="VECTOR_SQUARE" rotate="45.0" size="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="addPentagonButton" alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#initCreateShape" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="VECTOR_POLYGON" size="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="undoButton" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="320.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#undoAction" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="UNDO_VARIANT" size="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="redoButton" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="470.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#redoAction" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="REDO_VARIANT" size="30" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox fx:id="creationBox" maxHeight="100.0" maxWidth="800.0" minHeight="100.0" minWidth="800.0" prefHeight="100.0" prefWidth="800.0" visible="false" VBox.vgrow="NEVER">
+               <children>
+                  <GridPane fx:id="inputCreateGrid" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="800.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="132.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="112.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="90.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="165.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.0" minWidth="10.0" prefWidth="239.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <children>
+                              <Button fx:id="redSelect" mnemonicParsing="false" onMouseClicked="#checkColor" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: red;" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Avenir Next Medium" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="greenSelect" mnemonicParsing="false" onMouseClicked="#checkColor" prefWidth="20.0" style="-fx-background-color: green;" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Avenir Next Medium" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="blueSelect" mnemonicParsing="false" onMouseClicked="#checkColor" prefWidth="20.0" style="-fx-background-color: blue;" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Avenir Next Medium" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label fx:id="labelColor" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="163.0" text="Color :" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Avenir Next Medium" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="inputX" alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </padding>
+                           <font>
+                              <Font name="Avenir Next Medium" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="inputRadius" alignment="CENTER_RIGHT" prefHeight="8.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Avenir Next Medium" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </padding>
+                        </TextField>
+                        <TextField fx:id="inputY" alignment="CENTER_RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Avenir Next Medium" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="labelX" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="163.0" text="X :" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Avenir Next Medium" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="labelY" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="163.0" text="Y :" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Avenir Next Medium" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="labelRadius" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="163.0" text="Radius :" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Avenir Next Medium" size="13.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="createAction" mnemonicParsing="false" onMouseClicked="#createShape" prefWidth="40.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="100.0" top="3.0" />
+                           </GridPane.margin>
+                           <graphic>
+                              <MaterialDesignIconView fx:id="createTriangle" fill="DARKGREEN" glyphName="CHECK" size="20" />
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefWidth="40.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="100.0" top="15.0" />
+                           </GridPane.margin>
+                           <graphic>
+                              <MaterialDesignIconView fill="CRIMSON" glyphName="CLOSE" size="20" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="moveAction" layoutX="671.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#moveShape" prefWidth="40.0" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="moveIcon" fill="DARKGREEN" glyphName="CURSOR_MOVE" size="20" />
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="100.0" top="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="cloneAction" layoutX="671.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#cloneShape" prefWidth="40.0" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="cloneIcon" fill="DARKGREEN" glyphName="CONTENT_COPY" size="20" />
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="100.0" top="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="changeColorAction" layoutX="671.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#changeColorShape" prefWidth="40.0" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="changeColorIcon" fill="DARKGREEN" glyphName="FORMAT_PAINT" size="20" />
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="100.0" top="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="scaleAction" layoutX="671.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#scaleShape" prefWidth="40.0" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="scaleIcon" fill="DARKGREEN" glyphName="CODE_TAGS" size="20" />
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="100.0" top="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <HBox fillHeight="false" maxHeight="497.0" maxWidth="800.0" prefHeight="497.0" prefWidth="800.0" style="-fx-background-color: Gainsboro;" VBox.vgrow="NEVER">
+               <children>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="490.0" maxWidth="800.0" prefHeight="490.0" prefWidth="800.0">
+                     <content>
+                        <Group fx:id="canvas" autoSizeChildren="false">
+                           <children>
+                              <Line endX="800.0" />
+                              <Line endY="497.0" />
+                           </children>
+                        </Group>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+            <HBox fx:id="actionsBox" alignment="CENTER" maxHeight="60.0" maxWidth="800.0" minHeight="60.0" minWidth="800.0" prefHeight="60.0" prefWidth="800.0" VBox.vgrow="NEVER">
+               <children>
+                  <Button fx:id="moveButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#initMoveShape" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="CURSOR_MOVE" size="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="scaleButton" alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#initScaleShape" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="CODE_TAGS" size="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="cloneButton" alignment="CENTER" contentDisplay="CENTER" layoutX="410.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#initCloneShape" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="CONTENT_COPY" size="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="changeColorButton" alignment="CENTER" contentDisplay="CENTER" layoutX="440.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#initChangeColorShape" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="FORMAT_PAINT" size="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#deleteShape" prefHeight="60.0" prefWidth="60.0">
+                     <font>
+                        <Font name="Didot" size="13.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="DELETE" size="30" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox fx:id="footerBox" alignment="CENTER" layoutY="680.0" prefHeight="40.0" prefWidth="800.0">
+               <children>
+                  <Label fx:id="footerLabel" alignment="CENTER" maxHeight="40.0" maxWidth="800.0" minHeight="40.0" minWidth="600.0" prefHeight="40.0" prefWidth="800.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Avenir Next Medium" size="13.0" />
+                     </font></Label>
+               </children></HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
